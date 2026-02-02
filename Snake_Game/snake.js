@@ -9,8 +9,13 @@ let food = {
   x: Math.floor(Math.random() * 20) * box,
   y: Math.floor(Math.random() * 20) * box,
 }
+let gameOver = false
 
 document.addEventListener('keydown', changeDirection)
+let score = 0
+
+const scoreEl = document.getElementById('score')
+const restartBtn = document.getElementById('restartBtn')
 
 function changeDirection(e) {
   if (e.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP'
@@ -20,6 +25,8 @@ function changeDirection(e) {
 }
 
 function draw() {
+  if (gameOver) return
+
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   snake.forEach((part, index) => {
@@ -37,14 +44,17 @@ function draw() {
   if (direction === 'LEFT') head.x -= box
   if (direction === 'RIGHT') head.x += box
 
-  if (head.x === food.x && head.y === food.y) {
-    food = {
-      x: Math.floor(Math.random() * 20) * box,
-      y: Math.floor(Math.random() * 20) * box,
-    }
-  } else {
-    snake.pop()
-  }
+ if (head.x === food.x && head.y === food.y) {
+   score += 1
+   scoreEl.textContent = score
+
+   food = {
+     x: Math.floor(Math.random() * 20) * box,
+     y: Math.floor(Math.random() * 20) * box,
+   }
+ } else {
+   snake.pop()
+ }
 
   if (
     head.x < 0 ||
@@ -54,12 +64,27 @@ function draw() {
     snake.some((p) => p.x === head.x && p.y === head.y)
   ) {
     alert('Game Over!')
-    snake = [{ x: 200, y: 200 }]
-    direction = 'RIGHT'
+    gameOver = true
     return
+
   }
 
   snake.unshift(head)
 }
+restartBtn.addEventListener('click', restartGame)
+
+function restartGame() {
+  snake = [{ x: 200, y: 200 }]
+  direction = 'RIGHT'
+  score = 0
+  scoreEl.textContent = score
+  gameOver = false
+
+  food = {
+    x: Math.floor(Math.random() * 20) * box,
+    y: Math.floor(Math.random() * 20) * box,
+  }
+}
+
 
 setInterval(draw, 120)
