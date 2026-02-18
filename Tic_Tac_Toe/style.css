@@ -1,0 +1,63 @@
+@keyframes pulse-cyan {
+    0%, 100% { filter: drop-shadow(0 0 5px #22d3ee); }
+    50% { filter: drop-shadow(0 0 15px #22d3ee); }
+}
+
+@keyframes pulse-fuchsia {
+    0%, 100% { filter: drop-shadow(0 0 5px #d946ef); }
+    50% { filter: drop-shadow(0 0 15px #d946ef); }
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.cell {
+    position: relative;
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.cell.x::before {
+    content: 'X';
+    color: #22d3ee;
+    animation: appear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulse-cyan 2s infinite;
+}
+
+.cell.o::before {
+    content: 'O';
+    color: #d946ef;
+    animation: appear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulse-fuchsia 2s infinite;
+}
+
+.cell.winner {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    scale: 1.05;
+}
+
+/* Background Stars */
+.stars {
+    background-image:
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, #eee, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.2;
+    animation: drift 100s linear infinite;
+}
+
+@keyframes drift {
+    from { background-position: 0 0; }
+    to { background-position: 200px 1000px; }
+}
+
+.active-turn-indicator {
+    transition: opacity 0.3s ease;
+}
