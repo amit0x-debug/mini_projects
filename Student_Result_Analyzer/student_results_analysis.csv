@@ -1,0 +1,11 @@
+StudentID,Name,Math,Science,English,History,Art,Total,Average,Rank
+107,George Miller,95,98,92,94,96,475,95.0,1
+103,Charlie Davis,90,88,94,92,89,453,90.6,2
+110,Jenny Slate,89,91,87,90,92,449,89.8,3
+101,Alice Johnson,85,92,78,88,95,438,87.6,4
+105,Ethan Hunt,88,85,90,82,88,433,86.6,5
+106,Fiona Gallagher,78,82,85,79,81,405,81.0,6
+109,Ian Wright,82,80,78,85,80,405,81.0,6
+102,Bob Smith,72,68,75,80,65,360,72.0,8
+104,Diana Prince,65,70,72,68,74,349,69.8,9
+108,Hannah Abbott,60,55,62,58,64,299,59.8,10
